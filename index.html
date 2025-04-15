@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Pro Code Live Editor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@tailwindcss/forms"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    };
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto&family=Open+Sans&family=Montserrat&family=Lato&family=Raleway&family=Ubuntu&family=PT+Sans&family=Source+Sans+Pro&family=Merriweather&family=Rubik&family=Work+Sans&family=Inconsolata&family=Manrope&family=Quicksand&family=Space+Grotesk&family=Poppins&family=Inter&family=DM+Sans&family=Titillium+Web&display=swap');
+    textarea {
+      font-family: 'Fira Code', monospace;
+      min-height: 200px;
+      resize: vertical;
+    }
+    iframe {
+      border: 1px solid #ccc;
+    }
+    select {
+      background: white;
+      color: black;
+    }
+  </style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-black dark:text-white p-4 transition-all">
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="text-xl sm:text-2xl font-bold">🔥 Pro Code Live Editor</h1>
+    <button onclick="toggleDarkMode()" class="text-sm px-2 py-1 border rounded">🌙/☀️</button>
+  </div>
+
+  <select onchange="changeFont(this.value)" class="text-sm font-selector rounded border px-1">
+    <option value="Fira Code">Fira Code</option>
+    <option value="Roboto">Roboto</option>
+    <option value="Open Sans">Open Sans</option>
+    <option value="Montserrat">Montserrat</option>
+    <option value="Lato">Lato</option>
+    <option value="Raleway">Raleway</option>
+    <option value="Ubuntu">Ubuntu</option>
+    <option value="PT Sans">PT Sans</option>
+    <option value="Source Sans Pro">Source Sans Pro</option>
+    <option value="Merriweather">Merriweather</option>
+    <option value="Rubik">Rubik</option>
+    <option value="Work Sans">Work Sans</option>
+    <option value="Inconsolata">Inconsolata</option>
+    <option value="Manrope">Manrope</option>
+    <option value="Quicksand">Quicksand</option>
+    <option value="Space Grotesk">Space Grotesk</option>
+    <option value="Poppins">Poppins</option>
+    <option value="Inter">Inter</option>
+    <option value="DM Sans">DM Sans</option>
+    <option value="Titillium Web">Titillium Web</option>
+  </select>
+
+  <div class="mb-4">
+  
+  <br>
+  
+    <select id="snippetSelect" class="w-full p-2 rounded border text-black" onchange="insertSnippet()">
+  
+     <option value="">📁 Insert Snippet</option>
+
+<!-- Basic Structure -->
+<option value="<!DOCTYPE html>\n<html>\n<head>\n<title>My Page</title>\n</head>\n<body>\n\n</body>\n</html>">Basic HTML Page</option>
+<option value="<title>My Page</title>">Add Title</option>
+
+<!-- Basic Elements -->
+<option value="<h1>My Logo</h1>">Add Logo</option>
+<option value="<p>This is a paragraph</p>">Paragraph</option>
+<option value="<a href='https://google.com'>Open Google</a>">Link</option>
+<option value="<img src='poster.jpg' alt='Poster'>">Add Poster</option>
+<option value="<blockquote>Quoted Text</blockquote>">Quote</option>
+<option value="<marquee>Scrolling Text</marquee>">Marquee</option>
+<!-- Basic HTML Elements -->
+
+<option value="<h2>Subheading</h2>">Subheading</option>
+
+<option value="<footer>Footer Text</footer>">Footer Text</option>
+
+<!-- Text Formatting -->
+
+<option value="<b>Bold Text</b>">Bold Text</option>
+
+<option value="<i>Italic Text</i>">Italic Text</option>
+
+<option value="<u>Underlined Text</u>">Underlined Text</option>
+
+<option value="<mark>Highlighted Text</mark>">Highlighted Text</option>
+
+<!-- Working with Links -->
+
+<option value="<a href='#' title='Go to section'>Anchor Link</a>">Anchor Link</option>
+
+<option value="<a href='mailto:someone@example.com'>Send Email</a>">Send Email Link</option>
+
+<option value="<a href='tel:+1234567890'>Call Us</a>">Call Us Link</option>
+
+<!-- Forms and Inputs -->
+
+<option value="<input type='number' placeholder='Enter a number'>">Number Input</option>
+
+<option value="<input type='color' placeholder='Pick a color'>">Color Picker</option>
+
+<option value="<select><option value='apple'>Apple</option><option value='banana'>Banana</option></select>">Dropdown List</option>
+
+<option value="<textarea rows='4' cols='50' placeholder='Enter your message'></textarea>">Message Input</option>
+
+<option value="<button type='reset'>Reset Form</button>">Reset Button</option>
+
+<option value="<input type='submit' value='Submit Form'>">Submit Button</option>
+
+<!-- Forms & Inputs -->
+<option value="<input type='text' placeholder='Enter Name'>">Input Name</option>
+<option value="<input type='date'>">Input Date</option>
+<option value="<input type='time'>">Input Time</option>
+<option value="<textarea placeholder='Your Answer'></textarea>">Input Paragraph</option>
+<!-- 5. Adding Multiple Inputs -->
+<option value="<input type='text' name='username' placeholder='Enter Username'><input type='password' name='password' placeholder='Enter Password'>">Multiple Inputs</option>
+<option value="<input type='file' accept='image/*'>">Input Image</option>
+<option value="<form><input type='text'><button>Submit</button></form>">Form</option>
+<option value="<form action='/submit' method='POST'></form>">Form Attributes</option>
+
+<!-- Lists & Tables -->
+<option value="<ul><li>Item 1</li><li>Item 2</li></ul>">List</option>
+<option value="<table><tr><th>Head</th></tr><tr><td>Data</td></tr></table>">Table</option>
+<!-- Meta Tags & SEO -->
+
+<option value="<meta name='description' content='Description of your page'>">Meta Description</option>
+
+<option value="<meta name='keywords' content='HTML, CSS, JavaScript, Web Development'>">Meta Keywords</option>
+
+<!-- Customizing Text with CSS -->
+<option value="<span style='color: blue;'>Colored Text</span>">Colored Text</option>
+
+<option value="<span style='font-size: 20px;'>Text with Font Size</span>">Text with Font Size</option>
+
+<!-- Tables -->
+
+<option value="<table><thead><tr><th>Name</th><th>Age</th></tr></thead><tbody><tr><td>John</td><td>30</td></tr></tbody></table>">Simple Table</option>
+
+<option value="<table><tr><th>Header 1</th><th>Header 2</th><th>Header 3</th></tr><tr><td>Data 1</td><td>Data 2</td><td>Data 3</td></tr></table>">Table with Multiple Columns</option>
+
+<!-- Adding Icons -->
+
+<option value="<i class='fa fa-camera'></i>">Camera Icon (FontAwesome)</option>
+
+<option value="<i class='fa fa-heart'></i>">Heart Icon (FontAwesome)</option>
+
+<!-- Forms with Input Validation -->
+
+<option value="<input type='text' pattern='[A-Za-z]{3,}' title='Only letters allowed'>">Text Input with Pattern</option>
+
+<option value="<input type='email' required placeholder='Enter your email'>">Required Email Input</option>
+
+<!-- Embedding Videos & Media -->
+
+<option value="<video width='320' height='240' controls><source src='movie.mp4' type='video/mp4'></video>">Embed Video</option>
+
+<option value="<audio controls><source src='audio.mp3' type='audio/mp3'></audio>">Embed Audio</option>
+
+<!-- Advanced Layouts -->
+
+<option value="<div style='display: flex; flex-direction: column;'>Flexbox Column Layout</div>">Flexbox Column</option>
+
+<option value="<div style='display: grid; grid-template-columns: auto auto; gap: 10px;'>Grid Layout</div>">CSS Grid Layout</option>
+
+<!-- Advanced Forms -->
+
+<option value="<input type='tel' placeholder='Enter phone number'>">Phone Number Input</option>
+
+<option value="<input type='url' placeholder='Enter website URL'>">URL Input</option>
+
+<option value="<input type='range' min='1' max='100' value='50'>">Range (Slider)</option>
+
+<!-- Accessibility Enhancements -->
+
+<option value="<button aria-label='Close' onclick='alert(\"Closed!\")'>Close</button>">Accessible Close Button</option>
+
+<option value="<input type='checkbox' id='subscribe'><label for='subscribe'>Subscribe to Newsletter</label>">Checkbox Input</option>
+
+<!-- Interactive Content -->
+
+<option value="<div contenteditable='true'>Edit this text</div>">Editable Content</option>
+
+<!-- CSS Animations -->
+
+<option value="<div class='animated bounceIn'>Bouncing Animation</div>">Bounce Animation</option>
+
+<option value="<div style='animation: fadeIn 2s;'>Fading Animation</div>">Fade In Animation</option>
+
+<!-- Custom Fonts & Styles -->
+
+<option value="<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Open+Sans&display=swap'>">Google Font (Open Sans)</option>
+
+<option value="<style>body {font-family: 'Roboto', sans-serif;}</style>">Custom Font Style</option>
+
+<!-- SVG Images -->
+
+<option value="<svg width='100' height='100'><circle cx='50' cy='50' r='40' fill='green' /></svg>">SVG Circle</option>
+
+<!-- File Uploads -->
+
+<option value="<input type='file' accept='.jpg,.png,.gif' onchange='alert(\"File uploaded!\")'>">File Upload</option>
+
+<!-- Data Attributes -->
+
+<option value="<div data-tooltip='This is a tooltip'>Hover over me for a tooltip</div>">Data Attribute for Tooltip</option>
+
+<!-- Web APIs -->
+
+<option value="<script>navigator.geolocation.getCurrentPosition(function(position) {alert('Latitude: ' + position.coords.latitude + ', Longitude: ' + position.coords.longitude);});</script>">Geolocation API</option>
+
+<!-- Custom Scrollbar -->
+
+<option value="<style>::-webkit-scrollbar { width: 12px; } ::-webkit-scrollbar-thumb { background: #888; }</style>">Custom Scrollbar</option>
+
+<!-- Adding an HTML Template -->
+
+<option value="<template id='myTemplate'><p>This is a template.</p></template>">HTML Template</option>
+
+<!-- Media Queries -->
+
+<option value="<style>@media (max-width: 600px) {body {background-color: lightblue;}}</style>">CSS Media Query</option>
+
+<!-- Commenting HTML Code -->
+
+<option value="<!-- This is a comment -->">HTML Comment</option>
+
+<!-- Code Highlighting with Preformatted Text -->
+
+<option value="<pre><code>let x = 10;</code></pre>">Code Snippet</option>
+
+<!-- Conditional Statements in HTML (using noscript) -->
+
+<option value="<noscript>Your browser does not support JavaScript</noscript>">No JavaScript Support</option>
+
+<!-- External CSS File Link -->
+
+<option value="<link rel='stylesheet' href='style.css'>">Link External CSS</option>
+
+<!-- External JavaScript File Link -->
+
+<option value="<script src='script.js'></script>">Link External JS</option>
+
+<!-- Popups & Modals -->
+
+<option value="<div id='myModal' class='modal'><div class='modal-content'><span class='close'>&times;</span><p>Some text inside the modal</p></div></div>">Modal Popup</option>
+
+<!-- Adding a Loading Spinner -->
+
+<option value="<div class='spinner'></div>">Loading Spinner</option>
+
+<!-- HTML Input for Date and Time -->
+
+<option value="<input type='datetime-local' name='meeting' value='2025-04-20T12:30'>">Date & Time Picker</option>
+
+<!-- Placeholder Text in Inputs -->
+
+<option value="<input type='text' placeholder='Enter your username'>">Placeholder Text</option>
+
+<!-- Embedding an External Script -->
+
+<option value="<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>">Embed jQuery Script</option>
+
+<!-- Advanced Table with Borders -->
+
+<option value="<table style='border: 1px solid black;'><tr><th>Header 1</th><th>Header 2</th></tr><tr><td>Data 1</td><td>Data 2</td></tr></table>">Table with Borders</option>
+
+<!-- Button with Confirmation on Click -->
+
+<option value="<button onclick='return confirm(\"Are you sure?\")'>Click Me</button>">Confirm Button</option>
+
+<!-- SVG Line -->
+
+<option value="<svg width='100' height='100'><line x1='0' y1='0' x2='100' y2='100' stroke='black' stroke-width='2' /></svg>">SVG Line</option>
+
+<!-- Multimedia -->
+<option value="<video controls><source src='video.mp4' type='video/mp4'></video>">Add Video</option>
+<option value="<iframe src='https://www.youtube.com/embed/dQw4w9WgXcQ'></iframe>">YouTube Video</option>
+<option value="<canvas id='myCanvas'></canvas>">HTML Canvas</option>
+
+<!-- Metadata & Styling -->
+<option value="<meta name='viewport' content='width=device-width, initial-scale=1.0'>">Responsive Meta</option>
+<option value="<style>h1 { color: red; }</style>">HTML Style</option>
+
+<!-- Advanced Interactive Features -->
+<option value="<script>alert('Hello!')</script>">Message Alert</option>
+<option value="<div class='animate-bounce'>Bouncing Text</div>">Add Animation</option>
+<option value="<h1>&#128512; Emoji Heading</h1>">Add Emoji</option>
+<option value="<nav><a href='#'>Home</a> | <a href='#'>About</a></nav>">Add Tab Menu</option>
+
+<!-- Special Characters & Symbols -->
+<option value="&copy; &euro; &infin;">Symbols</option>
+
+<!-- Footer & Miscellaneous -->
+<option value="<footer>My Footer</footer>">Footer</option>
+<option value="<!-- This is a comment -->">Comment</option>
+
+<!-- More Advanced Concepts (Extra 20 Advanced Snippets) -->
+<option value="<link rel='stylesheet' href='styles.css'>">External CSS Link</option>
+<option value="<script src='script.js'></script>">External JavaScript Link</option>
+<option value="<audio controls><source src='audio.mp3' type='audio/mp3'></audio>">Add Audio</option>
+<option value="<iframe src='https://www.google.com/maps/embed?pb=...'></iframe>">Google Maps Embed</option>
+<option value="<input type='checkbox'> I agree to the terms">Checkbox</option>
+<option value="<input type='radio' name='option' value='A'> Option A">Radio Button</option>
+<option value="<input type='number' placeholder='Enter a number'>">Number Input</option>
+<option value="<progress value='50' max='100'></progress>">Progress Bar</option>
+<option value="<select><option>Option 1</option><option>Option 2</option></select>">Dropdown Menu</option>
+<option value="<div class='alert alert-warning'>Warning Message</div>">Bootstrap Alert</option>
+<option value="<div id='myDiv'></div>">Empty Div</option>
+<option value="<span class='highlight'>Highlighted Text</span>">Highlighted Text</option>
+<option value="<style>@import url('https://fonts.googleapis.com/css2?family=Roboto');</style>">Google Font Import</option>
+<option value="<meta charset='UTF-8'>">UTF-8 Character Set</option>
+<option value="<form><input type='text' name='name'><input type='submit' value='Submit'></form>">Form with Submit Button</option>
+<option value="<div class='card'>Card Content</div>">Card Layout</option>
+<option value="<table><thead><tr><th>Header</th></tr></thead><tbody><tr><td>Content</td></tr></tbody></table>">Table with Header</option>
+<option value="<link rel='icon' href='favicon.ico'>">Favicon</option>
+<option value="<meta name='description' content='My Awesome Page'>">Meta Description</option>
+<option value="<source src='image.jpg' type='image/jpg'>">Image Source Tag</option>
+ Adding Video Background -->
+<option value="<video autoplay muted loop><source src='background.mp4' type='video/mp4'></video>">Video Background</option>
+
+
+<!-- 28. Adding Data List for Input -->
+<option value="<input list='browsers' name='browser' id='browser'><datalist id='browsers'><option value='Chrome'><option value='Firefox'><option value='Safari'><option value='Edge'></datalist>">Input with Data List</option>
+
+<!-- 29. Adding Background Image -->
+<option value="<div style='background-image: url(image.jpg); height: 500px;'>Background Image</div>">Background Image</option>
+
+<!-- 30. Embed an Audio Player -->
+<option value="<audio controls><source src='audio.mp3' type='audio/mp3'></audio>">Embed Audio Player</option>
+<!-- 21. Adding Image Map -->
+<option value="<img src='image.jpg' usemap='#image-map'><map name='image-map'><area target='_blank' alt='Area 1' title='Area 1' href='#' coords='34,44,270,350' shape='rect'></map>">Image Map</option>
+
+<!-- 22. Adding Accessibility (ARIA) -->
+<option value="<button aria-label='Close' onclick='alert(\"Closed!\")'>X</button>">Accessible Button</option>
+
+<!-- 23. Adding Custom Form Input -->
+<option value="<input type='search' placeholder='Search'>">Search Input</option>
+
+<!-- 24. Adding Progress Bar -->
+<option value="<progress value='30' max='100'></progress>">Progress Bar</option>
+
+<!-- 25. Form with Validation -->
+<option value="<form><input type='text' required><input type='submit'></form>">Form Validation</option>
+
+<!-- 26. Adding SVG Image -->
+<option value="<svg width='100' height='100'><circle cx='50' cy='50' r='40' stroke='green' stroke-width='4' fill='yellow' /></svg>">SVG Image</option>
+
+<!-- 19. Adding HTML Anchor with Name -->
+<option value="<a name='section1'>Section 1</a>">Anchor with Name</option>
+<!-- 13. Using CSS Grid Layout -->
+<option value="<div style='display: grid; grid-template-columns: auto auto auto;'><div>Item 1</div><div>Item 2</div><div>Item 3</div></div>">CSS Grid Layout</option>
+
+<!-- 14. Using Flexbox -->
+<option value="<div style='display: flex; justify-content: space-between;'><div>Item 1</div><div>Item 2</div></div>">Flexbox Layout</option>
+
+<!-- 15. Adding Form with Select Menu -->
+<option value="<select><option value='option1'>Option 1</option><option value='option2'>Option 2</option></select>">Form with Select Menu</option>
+
+<!-- 16. Adding Textarea with Rows and Columns -->
+<option value="<textarea rows='4' cols='50'>Text Area</textarea>">Textarea with Rows and Columns</option>
+
+
+    </select>
+  </div>
+
+  <textarea id="editor" class="w-full p-3 text-base rounded border bg-gray-100 dark:bg-gray-800 text-purple-700 dark:text-green-300 mb-4" oninput="updatePreview()" placeholder="Write your HTML, CSS, or JS here..."></textarea>
+
+  <div class="flex justify-between items-center mb-2">
+    <label class="text-sm">Font Size:
+      <input type="range" min="12" max="24" value="16" id="fontSizeSlider" oninput="changeFontSize(this.value)" class="ml-2">
+    </label>
+    <div class="space-x-2">
+      <button onclick="setLayout('vertical')" class="text-xl">⬇️</button>
+      <button onclick="setLayout('horizontal')" class="text-xl">➡️</button>
+      <button onclick="exportCode()" class="text-sm px-2 py-1 bg-indigo-500 text-white rounded">🔗 Export</button>
+    </div>
+  </div>
+  
+  <div id="previewContainer" class="flex flex-col gap-4">
+    <iframe id="preview" class="w-full h-[300px] bg-white dark:bg-black rounded"></iframe>
+  </div>
+
+  <footer class="mt-10 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded p-4 text-center">
+    <p class="mb-2 font-semibold">💻 Pro Code Live Editor</p>
+     <p class="mb-2 font-semibold">Developed By Adarsh Kumar Singh</p>
+    <p>Made for creators, learners, and dreamers — online & powerful 🚀</p>
+    <p class="mt-2">&copy; <span id="year"></span> All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Auto-update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const editor = document.getElementById('editor');
+    const preview = document.getElementById('preview');
+    const previewContainer = document.getElementById('previewContainer');
+
+    // Save editor content to localStorage
+    editor.addEventListener('input', () => {
+      localStorage.setItem('editorData', editor.value);
+    });
+
+    // Load editor content from localStorage
+    window.onload = () => {
+      editor.value = localStorage.getItem('editorData') || '';
+      updatePreview(); // Update the preview with loaded content
+    };
+
+    // Update preview iframe
+    function updatePreview() {
+      preview.srcdoc = editor.value;
+    }
+
+    function insertSnippet() {
+      const select = document.getElementById('snippetSelect');
+      const val = select.value;
+      editor.value += '\n' + val;
+      updatePreview();
+      select.selectedIndex = 0;
+    }
+
+    function changeFontSize(size) {
+      editor.style.fontSize = size + 'px';
+    }
+
+    function setLayout(type) {
+      if (type === 'vertical') {
+        previewContainer.className = 'flex flex-col gap-4';
+        editor.classList.remove('w-1/2');
+        preview.classList.remove('w-1/2');
+      } else {
+        previewContainer.className = 'flex flex-row gap-4';
+        preview.classList.add('w-1/2');
+        editor.classList.add('w-1/2');
+      }
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+
+    function exportCode() {
+      const blob = new Blob([editor.value], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'my-code.html';
+      link.click();
+    }
+
+    function changeFont(font) {
+      editor.style.fontFamily = font;
+    }
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('✅ Service Worker registered:', reg.scope))
+          .catch(err => console.error('❌ Service Worker registration failed:', err));
+      });
+    }
+
+    // Function to take a snapshot of the preview iframe and download it as an image
+    function downloadPreviewImage() {
+      const iframe = document.getElementById("preview");
+      html2canvas(iframe.contentDocument.body).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'preview.png';
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    }
+  </script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <button onclick="downloadPreviewImage()">📸 Snapshot</button>
+</body>
+</html>
