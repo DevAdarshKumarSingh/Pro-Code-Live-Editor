@@ -396,10 +396,35 @@
   <script>
     // Auto-update year
     document.getElementById('year').textContent = new Date().getFullYear();
-
+    // CTRL + 
     const editor = document.getElementById('editor');
     const preview = document.getElementById('preview');
     const previewContainer = document.getElementById('previewContainer');
+<script>
+  function insertSnippet() {
+    const textarea = document.querySelector('textarea');
+    const select = document.getElementById('snippetSelect');
+    const snippet = select.value;
+
+    // Get cursor position
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+
+    // Insert the snippet where the cursor is
+    const before = textarea.value.substring(0, start);
+    const after = textarea.value.substring(end, textarea.value.length);
+    textarea.value = before + snippet + after;
+
+    // Put cursor after inserted snippet
+    textarea.selectionStart = textarea.selectionEnd = start + snippet.length;
+
+    // Focus again
+    textarea.focus();
+
+    // Reset dropdown
+    select.selectedIndex = 0;
+  }
+
 
     // Save editor content to localStorage
     editor.addEventListener('input', () => {
